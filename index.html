@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Travel Booking SaaS</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>TravelBot SaaS</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item active" data-section="dashboard">
+                        <i class="fas fa-chart-pie"></i>
+                        <span>Dashboard</span>
+                    </li>
+                    <li class="nav-item" data-section="whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp Bot</span>
+                        <div class="status-indicator online"></div>
+                    </li>
+                    <li class="nav-item" data-section="trips">
+                        <i class="fas fa-route"></i>
+                        <span>Trip Management</span>
+                    </li>
+                    <li class="nav-item" data-section="bookings">
+                        <i class="fas fa-ticket-alt"></i>
+                        <span>Bookings</span>
+                    </li>
+                    <li class="nav-item" data-section="fleet">
+                        <i class="fas fa-bus"></i>
+                        <span>Fleet Management</span>
+                    </li>
+                    <li class="nav-item" data-section="routes">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <span>Routes</span>
+                    </li>
+                    <li class="nav-item" data-section="monitoring">
+                        <i class="fas fa-heartbeat"></i>
+                        <span>System Monitor</span>
+                    </li>
+                    <li class="nav-item" data-section="api-docs">
+                        <i class="fas fa-code"></i>
+                        <span>API Docs</span>
+                    </li>
+                    <li class="nav-item" data-section="reports">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Reports</span>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <h1 class="page-title">Dashboard</h1>
+                    <div class="live-updates">
+                        <span>Live Updates</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="liveUpdates" checked>
+                            <span class="slider"></span>
+                        </label>
+                        <div class="live-indicator active"></div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="user-profile">
+                        <img src="https://via.placeholder.com/40x40" alt="User" class="profile-img">
+                        <span>Admin User</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Section -->
+            <section class="content-section active" id="dashboard">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-ticket-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number" data-target="1247">0</h3>
+                            <p class="stat-label">Total Bookings</p>
+                            <div class="stat-growth positive">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>12.5%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number" data-target="89450">$0</h3>
+                            <p class="stat-label">Revenue</p>
+                            <div class="stat-growth positive">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>8.2%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number" data-target="856">0</h3>
+                            <p class="stat-label">Active Users</p>
+                            <div class="stat-growth positive">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>5.7%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-bus"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number" data-target="24">0</h3>
+                            <p class="stat-label">Active Buses</p>
+                            <div class="stat-growth neutral">
+                                <i class="fas fa-minus"></i>
+                                <span>0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Bookings -->
+                <div class="dashboard-grid">
+                    <div class="dashboard-card recent-bookings">
+                        <div class="card-header">
+                            <h3>Recent Bookings</h3>
+                            <button class="btn btn-secondary">View All</button>
+                        </div>
+                        <div class="table-container">
+                            <table class="bookings-table">
+                                <thead>
+                                    <tr>
+                                        <th>Booking ID</th>
+                                        <th>Customer</th>
+                                        <th>Route</th>
+                                        <th>Date</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recentBookingsTable">
+                                    <!-- Dynamic content -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card system-status">
+                        <div class="card-header">
+                            <h3>System Status</h3>
+                        </div>
+                        <div class="status-items">
+                            <div class="status-item">
+                                <div class="status-indicator online"></div>
+                                <span>WhatsApp API</span>
+                                <div class="status-value">Online</div>
+                            </div>
+                            <div class="status-item">
+                                <div class="status-indicator online"></div>
+                                <span>Payment Gateway</span>
+                                <div class="status-value">Online</div>
+                            </div>
+                            <div class="status-item">
+                                <div class="status-indicator warning"></div>
+                                <span>SMS Service</span>
+                                <div class="status-value">Degraded</div>
+                            </div>
+                            <div class="status-item">
+                                <div class="status-indicator online"></div>
+                                <span>Database</span>
+                                <div class="status-value">Online</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- WhatsApp Bot Section -->
+            <section class="content-section" id="whatsapp">
+                <div class="section-header">
+                    <h2>WhatsApp Bot Configuration</h2>
+                    <div class="connection-status">
+                        <div class="status-indicator online"></div>
+                        <span>Connected</span>
+                    </div>
+                </div>
+
+                <div class="bot-config-grid">
+                    <div class="config-card">
+                        <h3>Bot Settings</h3>
+                        <div class="form-group">
+                            <label>Bot Phone Number</label>
+                            <input type="text" value="+1-234-567-8900" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Webhook URL</label>
+                            <input type="text" value="https://api.yourapp.com/webhook" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>API Status</label>
+                            <div class="api-status online">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Connected</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="config-card">
+                        <h3>Message Templates</h3>
+                        <div class="template-list">
+                            <div class="template-item">
+                                <div class="template-info">
+                                    <h4>Booking Confirmation</h4>
+                                    <p>Status: Approved</p>
+                                </div>
+                                <button class="btn btn-primary">Edit</button>
+                            </div>
+                            <div class="template-item">
+                                <div class="template-info">
+                                    <h4>Payment Reminder</h4>
+                                    <p>Status: Approved</p>
+                                </div>
+                                <button class="btn btn-primary">Edit</button>
+                            </div>
+                            <div class="template-item">
+                                <div class="template-info">
+                                    <h4>Trip Update</h4>
+                                    <p>Status: Pending</p>
+                                </div>
+                                <button class="btn btn-primary">Edit</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-success">Add Template</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Trip Management Section -->
+            <section class="content-section" id="trips">
+                <div class="section-header">
+                    <h2>Trip Management</h2>
+                    <button class="btn btn-primary" onclick="openCreateTripModal()">
+                        <i class="fas fa-plus"></i>
+                        Create Trip
+                    </button>
+                </div>
+
+                <div class="trips-grid" id="tripsGrid">
+                    <!-- Dynamic content -->
+                </div>
+            </section>
+
+            <!-- Bookings Section -->
+            <section class="content-section" id="bookings">
+                <div class="section-header">
+                    <h2>Booking Management</h2>
+                    <div class="search-filters">
+                        <input type="text" placeholder="Search bookings..." class="search-input">
+                        <select class="filter-select">
+                            <option>All Status</option>
+                            <option>Confirmed</option>
+                            <option>Pending</option>
+                            <option>Cancelled</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="bookings-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Customer</th>
+                                <th>Phone</th>
+                                <th>Route</th>
+                                <th>Date</th>
+                                <th>Seats</th>
+                                <th>Amount</th>
+                                <th>Payment</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bookingsTableBody">
+                            <!-- Dynamic content -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Fleet Management Section -->
+            <section class="content-section" id="fleet">
+                <div class="section-header">
+                    <h2>Fleet Management</h2>
+                    <button class="btn btn-primary">Add Bus</button>
+                </div>
+
+                <div class="fleet-grid" id="fleetGrid">
+                    <!-- Dynamic content -->
+                </div>
+            </section>
+
+            <!-- Routes Management Section -->
+            <section class="content-section" id="routes">
+                <div class="section-header">
+                    <h2>Routes Management</h2>
+                    <button class="btn btn-primary">Add Route</button>
+                </div>
+
+                <div class="routes-container" id="routesContainer">
+                    <!-- Dynamic content -->
+                </div>
+            </section>
+
+            <!-- System Monitoring Section -->
+            <section class="content-section" id="monitoring">
+                <div class="section-header">
+                    <h2>System Monitoring</h2>
+                </div>
+
+                <div class="monitoring-grid">
+                    <div class="monitor-card">
+                        <h3>System Uptime</h3>
+                        <div class="metric-value">99.8%</div>
+                        <div class="metric-detail">Last 30 days</div>
+                    </div>
+                    <div class="monitor-card">
+                        <h3>Response Time</h3>
+                        <div class="metric-value">245ms</div>
+                        <div class="metric-detail">Average</div>
+                    </div>
+                    <div class="monitor-card">
+                        <h3>Active Connections</h3>
+                        <div class="metric-value">1,247</div>
+                        <div class="metric-detail">Current</div>
+                    </div>
+                    <div class="monitor-card">
+                        <h3>Error Rate</h3>
+                        <div class="metric-value">0.2%</div>
+                        <div class="metric-detail">Last 24h</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- API Documentation Section -->
+            <section class="content-section" id="api-docs">
+                <div class="section-header">
+                    <h2>API Documentation</h2>
+                </div>
+
+                <div class="api-docs-container">
+                    <div class="api-section">
+                        <h3>Authentication</h3>
+                        <div class="code-block">
+                            <pre><code>Authorization: Bearer your-api-key-here</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="api-section">
+                        <h3>Endpoints</h3>
+                        <div class="endpoint-list">
+                            <div class="endpoint-item">
+                                <div class="endpoint-method post">POST</div>
+                                <div class="endpoint-path">/api/bookings</div>
+                                <div class="endpoint-desc">Create new booking</div>
+                            </div>
+                            <div class="endpoint-item">
+                                <div class="endpoint-method get">GET</div>
+                                <div class="endpoint-path">/api/bookings</div>
+                                <div class="endpoint-desc">Get all bookings</div>
+                            </div>
+                            <div class="endpoint-item">
+                                <div class="endpoint-method get">GET</div>
+                                <div class="endpoint-path">/api/routes</div>
+                                <div class="endpoint-desc">Get available routes</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reports Section -->
+            <section class="content-section" id="reports">
+                <div class="section-header">
+                    <h2>Reports & Analytics</h2>
+                    <div class="report-controls">
+                        <select class="period-select">
+                            <option>Last 7 days</option>
+                            <option>Last 30 days</option>
+                            <option>Last 3 months</option>
+                        </select>
+                        <button class="btn btn-secondary">Export</button>
+                    </div>
+                </div>
+
+                <div class="reports-grid">
+                    <div class="report-card">
+                        <h3>Revenue Summary</h3>
+                        <div class="report-value">$89,450</div>
+                        <div class="report-growth positive">+8.2% vs last period</div>
+                    </div>
+                    <div class="report-card">
+                        <h3>Booking Volume</h3>
+                        <div class="report-value">1,247</div>
+                        <div class="report-growth positive">+12.5% vs last period</div>
+                    </div>
+                    <div class="report-card">
+                        <h3>Average Ticket Price</h3>
+                        <div class="report-value">$71.75</div>
+                        <div class="report-growth negative">-2.1% vs last period</div>
+                    </div>
+                    <div class="report-card">
+                        <h3>Customer Satisfaction</h3>
+                        <div class="report-value">4.8/5</div>
+                        <div class="report-growth positive">+0.3 vs last period</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="fab-container">
+        <button class="fab" onclick="toggleFabMenu()">
+            <i class="fas fa-plus"></i>
+        </button>
+        <div class="fab-menu">
+            <button class="fab-item" onclick="openCreateTripModal()">
+                <i class="fas fa-route"></i>
+                <span>New Trip</span>
+            </button>
+            <button class="fab-item" onclick="openCreateBookingModal()">
+                <i class="fas fa-ticket-alt"></i>
+                <span>New Booking</span>
+            </button>
+            <button class="fab-item" onclick="openAddBusModal()">
+                <i class="fas fa-bus"></i>
+                <span>Add Bus</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal-overlay" id="modalOverlay"></div>
+    
+    <!-- Create Trip Modal -->
+    <div class="modal" id="createTripModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create New Trip</h3>
+                <button class="modal-close" onclick="closeModal('createTripModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Route</label>
+                    <select id="tripRoute">
+                        <option>New York - Boston</option>
+                        <option>Boston - Washington DC</option>
+                        <option>Philadelphia - New York</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Bus</label>
+                    <select id="tripBus">
+                        <option>Bus #001 - Mercedes Sprinter</option>
+                        <option>Bus #002 - Volvo 9700</option>
+                        <option>Bus #003 - Scania Touring</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Departure Date</label>
+                    <input type="datetime-local" id="tripDate">
+                </div>
+                <div class="form-group">
+                    <label>Price</label>
+                    <input type="number" id="tripPrice" placeholder="Enter price">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('createTripModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="createTrip()">Create Trip</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
